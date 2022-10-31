@@ -6,4 +6,4 @@ Potato Chip,3.49,97
 Pepsi,1.99,6
 Cheetos,2.99,-100
 Mountain Dew,5.99,16
-Gum,0.49,11
+Gum,0.49,9

@@ -4,6 +4,8 @@ package com.mattu.vendingmachine.dao;
 import com.sal.vendingmachine.dao.VendingMachineDao;
 import com.sal.vendingmachine.dao.VendingMachineDaoImpl;
 import com.sal.vendingmachine.dto.Item;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -19,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VendingMachineDaoImplTest {
     
     public static VendingMachineDao testDao;
+    private Item item;
     
     public VendingMachineDaoImplTest() {
     }
@@ -33,12 +36,20 @@ public class VendingMachineDaoImplTest {
     }
 
     @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         testDao = new VendingMachineDaoImpl();
+
+        item = new Item("TestItem", new BigDecimal(3), 1);
+
+        testDao.addItem(item);
     }
 
     @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
+    public void tearDown() throws Exception
+    {
+        
+        testDao.removeItem(item);
     }
     
 //    @BeforeAll
@@ -62,7 +73,8 @@ public class VendingMachineDaoImplTest {
      */
     @org.junit.jupiter.api.Test
     public void testGetItem() throws Exception {
-     //implement }
+        assertEquals(testDao.getItem("TestItem"), item);
+    }
 
     /**
      * Test of listAllItems method, of class VendingMachineDaoImpl.
@@ -71,13 +83,16 @@ public class VendingMachineDaoImplTest {
     public void testListAllItems() throws Exception {
         List<Item> testList = testDao.listAllItems();
 
-    //implement}
+        assertEquals(testList.size(), 10);
+}
 
     /**
      * Test of changeInventoryCount method, of class VendingMachineDaoImpl.
      */
     @org.junit.jupiter.api.Test
     public void testChangeInventoryCount() throws Exception {
-      //implement}
+        testDao.changeInventoryCount(item, 5);
+        assertEquals(item.getNumInventoryItems(), 5);
+    }
     
 }

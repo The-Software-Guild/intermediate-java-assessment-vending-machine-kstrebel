@@ -56,3 +56,9 @@ Tue Jul 05 13:21:33 EDT 2022 :: Item abc has been sold. Number in Inventory: 8
 Tue Jul 05 13:23:40 EDT 2022 :: Item Potato Chip has been sold. Number in Inventory: 97
 Tue Jul 05 13:24:17 EDT 2022 :: Item abc has been sold. Number in Inventory: 7
 Fri Oct 21 08:34:16 PDT 2022 :: Item Snickers Bar has been sold. Number in Inventory: 12
+2022-10-31T15:43:21.613578700 : Item Gum has been sold. Number in Inventory: 10
+2022-10-31T15:44:20.542197700 : Item Gum has been sold. Number in Inventory: 10
+2022-10-31T15:45:10.866272400 : Item Gum has been sold. Number in Inventory: 10
+2022-10-31T15:49:16.202025900 : Item Gum has been sold. Number in Inventory: 10
+2022-10-31T15:49:29.965146800 : Item Gum has been sold. Number in Inventory: 10
+2022-10-31T15:52:12.212975 : Item Gum has been sold. Number in Inventory: 9

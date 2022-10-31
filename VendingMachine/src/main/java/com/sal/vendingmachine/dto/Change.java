@@ -18,7 +18,15 @@ public class Change {
     }
     
     public HashMap<Coins,Integer> getChange(BigDecimal funds) throws VendingMachineInsufficientFundsException{
-      //implement
+      final Coins[] coinList =
+      { Coins.QUARTERS, Coins.DIME, Coins.NICKLE, Coins.PENNY };
+
+      for (Coins coin : coinList) {
+        coinChangeMap.put(coin, funds.divide(coin.getValue()).intValue());
+
+        funds = funds.remainder(coin.getValue());
+      }
+
+      return coinChangeMap;
     }
-    
 }

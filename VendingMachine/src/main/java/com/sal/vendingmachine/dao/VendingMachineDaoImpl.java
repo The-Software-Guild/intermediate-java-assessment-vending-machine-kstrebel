@@ -24,8 +24,18 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
     
     @Override
     public Item getItem(String name) throws VendingMachineException{
-        itemMap=fio.readFile(ITEM_FILE);
-        return itemMap.get(name);
+        
+        try{
+            itemMap = fio.readFile(ITEM_FILE);
+            Item item = itemMap.get(name);
+            item.getCost(); //test that it's valid
+
+            return item;
+        }
+        catch (NullPointerException e)
+        {
+            throw new VendingMachineException("Could not find item " + name);
+        }
     }
 
     @Override
@@ -38,7 +48,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
     public Item addItem(Item item) throws VendingMachineException{
         itemMap=fio.readFile(ITEM_FILE);
         Item res = itemMap.put(item.getName(), item);
-        fio.wirteFile(new ArrayList<Item>(itemMap.values()));
+        fio.writeFile(new ArrayList<Item>(itemMap.values()));
         return res;
     }
 
@@ -46,7 +56,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
     public Item removeItem(Item item) throws VendingMachineException{
        itemMap=fio.readFile(ITEM_FILE);
        Item res=itemMap.remove(item.getName());
-       fio.wirteFile(new ArrayList<Item>(itemMap.values()));
+       fio.writeFile(new ArrayList<Item>(itemMap.values()));
        return res;
     }
 
@@ -54,7 +64,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
     public Item changeInventoryCount(Item item, int newCount) throws VendingMachineException{
         item.setNumInventoryItems(newCount);
         Item res=itemMap.put(item.getName(),item);
-        fio.wirteFile(new ArrayList<Item>(itemMap.values()));
+        fio.writeFile(new ArrayList<Item>(itemMap.values()));
         return res;
     }
     

@@ -13,6 +13,6 @@ import java.util.Map;
 public interface FileDao {
     public Item unmarshallItem(String line);
     public String marshallItem(Item item);
-    public void wirteFile(List<Item> list) throws VendingMachineException;
+    public void writeFile(List<Item> list) throws VendingMachineException;
     public Map<String,Item> readFile(String file) throws VendingMachineException;
 }

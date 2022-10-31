@@ -23,12 +23,13 @@ public class VendingMachineController {
     private VendingMachineView view;
     private VendingMachineService service;
 
-    public VendingMachineController() throws VendingMachineException {
-       //implement
-    }
+    // public VendingMachineController() throws VendingMachineException {
+    //    //implement
+    // }
     
     public VendingMachineController(VendingMachineView view, VendingMachineService service) {
-        //implement
+        this.view = view;
+        this.service = service;
     }
     
     
@@ -67,22 +68,36 @@ public class VendingMachineController {
             }
         }
         }catch(VendingMachineException e){
-            //implement
+            view.displayErrorMessage(e.getMessage());
         }
         
         
-        view.displayQuitMessage();
+        // view.displayQuitMessage();
     }
     
     public BigDecimal addFunds(BigDecimal balance){
-      //implement
+        return view.displayAndGetFunds();
     }
     
-    public BigDecimal buyItems(BigDecimal balance) throws VendingMachineException, VendingMachineItemInventoryException, VendingMachineInsufficientFundsException{
-       //implement
+    public BigDecimal buyItems(BigDecimal balance) throws VendingMachineException, VendingMachineItemInventoryException,
+            VendingMachineInsufficientFundsException
+    {
+        view.printAllItems(service.listAllItems());
+
+        try
+        {
+            balance = service.sellItem(balance, service.getItem(view.getItemSelection()));
+            view.purchaseSucceeded();
+        } catch (VendingMachineException e)
+        {
+            view.displayErrorMessage(e.getMessage());
+        }
+
+        return balance;
     }
     
-    public void quit(BigDecimal balance) throws VendingMachineInsufficientFundsException{
-       //implement
+    public void quit(BigDecimal balance) throws VendingMachineInsufficientFundsException
+    {
+        view.displayQuitMessage();
     }
 }
